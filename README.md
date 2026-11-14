@@ -1,10 +1,24 @@
 # Zenodo Pre-Registration Deposit Package (Pre-Gaia DR4)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24210580.svg)](https://doi.org/10.5281/zenodo.24210580)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0009--7732--5915-a6ce39)](https://orcid.org/0009-0009-7732-5915)
+[![Licence: MIT](https://img.shields.io/badge/Code_Licence-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Licence: CC BY 4.0](https://img.shields.io/badge/Manuscript-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
 **Title:** Nonlinear Field-Equation Predictions of an Additive Cubic-Gradient Scalar Model (`v0`) for Gaia DR4 Wide Binaries and Tests on Dwarf Galaxies  
-**Author:** Jaqueline Martins (Independent Researcher, United Kingdom)  
+**Author:** Jaqueline Martins (`ORCID: 0009-0009-7732-5915` · Independent Computational Physics & AI Safety Researcher, Luton, United Kingdom)  
 **Deposit Date (Frozen Pre-DR4):** 14 November 2026  
 **Target Data Release:** ESA *Gaia* Data Release 4 (expected December 2026)  
 **Licences:** CC-BY-4.0 (Manuscript, Tables, Figures) · MIT Licence (Numerical Solver & Audit Scripts)
+
+---
+
+## 60-Second Narrated Scientific Briefing (1080p HD Video)
+
+[![Watch the 60-Second Narrated Scientific Briefing](figures/cover_gaia_dr4_3d_wide_binary.jpg)](https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde/releases/download/v1.0.0/APPROVED_GAIA_DR4_PITCH_60S_VEO3_2026.mp4)
+
+- **Watch / Download 60s Narrated Briefing (`MP4`, 1080p HD, Stereo Audio):** [APPROVED_GAIA_DR4_PITCH_60S_VEO3_2026.mp4](https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde/releases/download/v1.0.0/APPROVED_GAIA_DR4_PITCH_60S_VEO3_2026.mp4) ([Release `v1.0.0`](https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde/releases/tag/v1.0.0))
+- **Read Pre-Registered CERN Zenodo Technical Note (`PDF`):** [DOI: 10.5281/zenodo.24210580](https://doi.org/10.5281/zenodo.24210580)
 
 ---
 
@@ -49,7 +63,11 @@ shasum -a 256 -c SHA256SUMS.txt
 - **DOI:** [10.5281/zenodo.24210580](https://doi.org/10.5281/zenodo.24210580)
 - **ORCID:** [0009-0009-7732-5915](https://orcid.org/0009-0009-7732-5915)
 
-## Research Compute & Open-Science Patronage
+## Research Compute & Open-Science Patronage ($5,000 Compute & Open-Access Goal)
 
-Independent open-science reproduction and 3D nonlinear PDE compute for *Gaia* DR4 wide-binary testing is supported by community patronage:
-- **Direct Research Support (Stripe UK — GBP / USD / EUR):** [https://donate.stripe.com/9B64gzeaI8Dr6By305dwc3G](https://donate.stripe.com/9B64gzeaI8Dr6By305dwc3G)
+Independent open-science reproduction, cloud HPC Monte Carlo calibration, and 3D nonlinear PDE compute for *Gaia* DR4 wide-binary testing operate with zero university overhead and are supported via the following verified channels:
+
+- **ResearchHub (Live Peer-Reviewed Grant Proposal):** [Proposal #33313 — Blind Observational Test of Pre-Registered 3D Nonlinear Scalar-Field Predictions](https://www.researchhub.com/proposal/33313/blind-observational-test-of-pre-registered-three-dimensional-nonlinear-scalar-field-predictions-v0-and-v1)
+- **Experiment.com Campaign:** [Testing Pre-Registered 3D Nonlinear Gravity Predictions with ESA Gaia DR4 Wide Binaries](https://experiment.com/projects/jhwuatafvbcdarkvnovl)
+- **Ko-fi Open-Science Page:** [ko-fi.com/jaquelinemartins](https://ko-fi.com/jaquelinemartins)
+- **Direct UK Research Patronage (Stripe UK — Apple Pay / Google Pay / GBP / USD / EUR):** [donate.stripe.com/9B64gzeaI8Dr6By305dwc3G](https://donate.stripe.com/9B64gzeaI8Dr6By305dwc3G)

@@ -1,0 +1,86 @@
+{
+  "dsphs": [
+    {
+      "galaxy": "Fornax",
+      "ML_pop": 1.2,
+      "Geff_over_G": 7.783266523217566,
+      "sigma_PDE_kms": 12.028518662566187,
+      "sigma_obs_kms": 11.7,
+      "gamma_sigma": 1.0280785181680503
+    },
+    {
+      "galaxy": "Leo I",
+      "ML_pop": 1.2,
+      "Geff_over_G": 6.484667619832592,
+      "sigma_PDE_kms": 8.892245634781714,
+      "sigma_obs_kms": 9.2,
+      "gamma_sigma": 0.9665484385632299
+    },
+    {
+      "galaxy": "Leo II",
+      "ML_pop": 1.6,
+      "Geff_over_G": 8.939130791553392,
+      "sigma_PDE_kms": 5.706331821052149,
+      "sigma_obs_kms": 6.6,
+      "gamma_sigma": 0.864595730462447
+    },
+    {
+      "galaxy": "Sculptor",
+      "ML_pop": 1.8,
+      "Geff_over_G": 6.748283541091997,
+      "sigma_PDE_kms": 7.307901470290191,
+      "sigma_obs_kms": 9.2,
+      "gamma_sigma": 0.7943371163358904
+    },
+    {
+      "galaxy": "Carina",
+      "ML_pop": 1.2,
+      "Geff_over_G": 9.873160785344243,
+      "sigma_PDE_kms": 3.1084850166154814,
+      "sigma_obs_kms": 6.6,
+      "gamma_sigma": 0.47098257827507295
+    },
+    {
+      "galaxy": "Sextans",
+      "ML_pop": 1.8,
+      "Geff_over_G": 8.33444046699515,
+      "sigma_PDE_kms": 2.2617335194129184,
+      "sigma_obs_kms": 7.9,
+      "gamma_sigma": 0.2862953822041669
+    },
+    {
+      "galaxy": "Draco",
+      "ML_pop": 1.8,
+      "Geff_over_G": 7.128711582913574,
+      "sigma_PDE_kms": 2.9213840098634134,
+      "sigma_obs_kms": 9.1,
+      "gamma_sigma": 0.32103120987510037
+    },
+    {
+      "galaxy": "Ursa Minor",
+      "ML_pop": 1.8,
+      "Geff_over_G": 7.250852324757429,
+      "sigma_PDE_kms": 3.362293695852144,
+      "sigma_obs_kms": 9.5,
+      "gamma_sigma": 0.3539256521949625
+    }
+  ],
+  "wide_binaries": {
+    "Solar_gtot_1p9e-10": {
+      "bins": {
+        "1.5": 1.0042667533076948,
+        "15.0": 1.122177100165729,
+        "25.0": 1.1238839647048051
+      },
+      "gamma_rel": 1.1182591963105488
+    },
+    "Solar_gN_bar_1p2e-10": {
+      "bins": {
+        "1.5": 1.004263189427331,
+        "15.0": 1.1824305098593137,
+        "25.0": 1.1864609769332977
+      },
+      "gamma_rel": 1.1794176624871828
+    }
+  }
+}

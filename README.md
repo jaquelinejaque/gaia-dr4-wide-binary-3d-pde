@@ -67,6 +67,7 @@ shasum -a 256 -c SHA256SUMS.txt
 
 Independent open-science reproduction, cloud HPC Monte Carlo calibration, and 3D nonlinear PDE compute for *Gaia* DR4 wide-binary testing operate with zero university overhead and are supported via the following verified channels:
 
+- **GitHub Sponsors (Official Monthly & One-Time Tiers — Zero Platform Fee):** [github.com/sponsors/jaquelinejaque](https://github.com/sponsors/jaquelinejaque)
 - **ResearchHub (Live Peer-Reviewed Grant Proposal):** [Proposal #33313 — Blind Observational Test of Pre-Registered 3D Nonlinear Scalar-Field Predictions](https://www.researchhub.com/proposal/33313/blind-observational-test-of-pre-registered-three-dimensional-nonlinear-scalar-field-predictions-v0-and-v1)
 - **Experiment.com Campaign:** [Testing Pre-Registered 3D Nonlinear Gravity Predictions with ESA Gaia DR4 Wide Binaries](https://experiment.com/projects/jhwuatafvbcdarkvnovl)
 - **Ko-fi Open-Science Page:** [ko-fi.com/jaquelinemartins](https://ko-fi.com/jaquelinemartins)

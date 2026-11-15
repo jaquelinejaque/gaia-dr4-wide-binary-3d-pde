@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gaia DR4 Wide-Binary 3D Nonlinear PDE Pre-Registration | CERN Zenodo 10.5281/zenodo.24210580</title>
+  <meta name="description" content="Cryptographically locked three-dimensional axisymmetric Finite-Volume Newton-Raphson PDE predictions (models v0 and v1.3) pre-registered ahead of ESA Gaia Data Release 4 (2 December 2026).">
+  <style>
+    :root {
+      --bg: #f9f9f7;
+      --surface: #ffffff;
+      --surface-alt: #f2f3ef;
+      --ink: #16191d;
+      --ink-muted: #4e5661;
+      --border: #d8dce0;
+      --accent: #163a5f;
+      --accent-soft: #e8eef5;
+      --v0-col: #163a5f;
+      --v13-col: #0f766e;
+      --mond-col: #9a3412;
+      --gr-col: #52525b;
+      --code-bg: #14181f;
+      --code-ink: #e6edf3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .top-bar {
+      background-color: var(--accent);
+      color: #ffffff;
+      font-size: 0.85rem;
+      padding: 0.55rem 1.25rem;
+      border-bottom: 1px solid #0d253f;
+    }
+
+    .top-bar-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem 1.25rem;
+    }
+
+    .top-bar a {
+      color: #dbeafe;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 2.25rem 1.25rem 4rem;
+    }
+
+    header.hero {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .doc-label {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid #c5d4e6;
+      padding: 0.25rem 0.6rem;
+      border-radius: 3px;
+      margin-bottom: 0.85rem;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-weight: 700;
+      font-size: clamp(1.65rem, 3.1vw, 2.35rem);
+      line-height: 1.24;
+      margin: 0 0 0.85rem;
+      color: #0f172a;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+      max-width: 880px;
+      margin: 0 0 1.35rem;
+    }
+
+    .meta-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.5rem;
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .meta-strip strong {
+      color: var(--ink);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.58rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 4px;
+      border: 1px solid var(--accent);
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0e2944;
+    }
+
+    .btn-secondary {
+      background-color: var(--surface);
+      color: var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--accent-soft);
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .countdown-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+    }
+
+    .countdown-card.release {
+      border-left-color: var(--v13-col);
+    }
+
+    .countdown-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .countdown-timer {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+
+    .countdown-sub {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1.4rem;
+      margin: 2.4rem 0 0.85rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+      color: #0f172a;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin: 1.4rem 0 0.5rem;
+      color: #0f172a;
+    }
+
+    .summary-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0 2rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem 1.1rem;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-value {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-note {
+      font-size: 0.83rem;
+      color: var(--ink-muted);
+    }
+
+    .explorer-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab-group, .field-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .ctrl-btn {
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.42rem 0.78rem;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--ink);
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .ctrl-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .canvas-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    canvas#pdeCanvas {
+      width: 100%;
+      height: 410px;
+      display: block;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 3px;
+      cursor: crosshair;
+    }
+
+    .readout-box {
+      margin-top: 0.85rem;
+      padding: 0.75rem 1rem;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.83rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem 1.5rem;
+    }
+
+    .slider-row {
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+      font-size: 0.88rem;
+    }
+
+    .slider-row.visible {
+      display: flex;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .video-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #0f172a;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .video-frame iframe, .video-placeholder {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-placeholder {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #f8fafc;
+      text-align: center;
+      padding: 1.25rem;
+      cursor: pointer;
+      background: linear-gradient(160deg, #0f172a 0%, #163a5f 100%);
+    }
+
+    .video-play-btn {
+      display: inline-block;
+      padding: 0.55rem 1.1rem;
+      border: 1px solid #93c5fd;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      margin-bottom: 0.6rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      margin: 1rem 0 1.5rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--surface-alt);
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    code, .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.85em;
+    }
+
+    pre {
+      background: var(--code-bg);
+      color: var(--code-ink);
+      padding: 1rem 1.15rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      margin: 0.75rem 0 1.25rem;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .copy-btn {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      padding: 0.28rem 0.65rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.2rem;
+      border-radius: 4px;
+      margin: 1.25rem 0;
+      font-size: 0.93rem;
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      margin-top: 0.6rem;
+    }
+
+    .footer-links a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    @media (max-width: 640px) {
+      canvas#pdeCanvas {
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <span><strong>CERN Zenodo Archival Pre-Registration:</strong> DOI <a href="https://doi.org/10.5281/zenodo.24210580" target="_blank" rel="noopener">10.5281/zenodo.24210580</a> (Locked 14 Nov 2026 01:22:19 UTC)</span>
+      <span><a href="https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde" target="_blank" rel="noopener">GitHub Source (MIT)</a> &middot; <a href="https://orcid.org/0009-0009-7732-5915" target="_blank" rel="noopener">ORCID 0009-0009-7732-5915</a></span>
+    </div>
+  </div>
+
+  <main class="container">
+    <header class="hero">
+      <div class="doc-label">Blind Observational Test Protocol &middot; Pre-Gaia DR4</div>
+      <h1>Three-Dimensional Nonlinear PDE Predictions for ESA Gaia Data Release 4 Wide Binaries</h1>
+      <p class="subtitle">
+        Open-source axisymmetric Finite-Volume Newton&ndash;Raphson solvers (<code>v0</code> cubic-gradient scalar field and <code>v1.3</code> exponential Poisson AQUAL extension) with SHA-256-locked sample cuts and falsification boundaries frozen prior to the opening of the ~400 TB ESA Gaia DR4 catalogue.
+      </p>
+      <div class="meta-strip">
+        <span><strong>Author:</strong> Jaqueline Martins (Luton, United Kingdom)</span>
+        <span><strong>Licences:</strong> MIT (Code) &middot; CC-BY-4.0 (Manuscript &amp; Tables)</span>
+        <span><strong>Mesh:</strong> 400 &times; 800 Cylindrical Finite-Volume</span>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde" target="_blank" rel="noopener">Source Code, SHA-256 Hashes &amp; Scripts on GitHub</a>
+        <a class="btn btn-secondary" href="https://doi.org/10.5281/zenodo.24210580" target="_blank" rel="noopener">Read Technical Note at CERN Zenodo</a>
+        <a class="btn btn-secondary" href="https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde/issues" target="_blank" rel="noopener">Pre-DR4 Blind Cut Audit (GitHub Issues)</a>
+      </div>
+    </header>
+
+    <section class="countdown-grid" aria-label="ESA Gaia DR4 Schedule">
+      <div class="countdown-card">
+        <div class="countdown-title">ESA Gaia Archive Maintenance Cutover</div>
+        <div class="countdown-timer" id="timer-cutover">Calculating...</div>
+        <div class="countdown-sub">Scheduled by ESA Cosmos: Wednesday, 25 November 2026 at 12:00 CET (11:00 UTC)</div>
+      </div>
+      <div class="countdown-card release">
+        <div class="countdown-title">ESA Gaia Data Release 4 (DR4) Catalogue Opening</div>
+        <div class="countdown-timer" id="timer-dr4">Calculating...</div>
+        <div class="countdown-sub">Scheduled by ESA Cosmos: Wednesday, 2 December 2026 at 12:00 CET (11:00 UTC)</div>
+      </div>
+    </section>
+
+    <section class="summary-cards">
+      <div class="stat-card">
+        <div class="stat-label">Primary Prediction H1 (v0)</div>
+        <div class="stat-value">&gamma;<sub>rel</sub> = 1.166</div>
+        <div class="stat-note">10&ndash;30 kAU normalised to 1&ndash;2 kAU at Solar g<sub>ext</sub> = 1.9 &times; 10<sup>-10</sup> m s<sup>-2</sup> (zero binary parameters).</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Primary Prediction H1 (v1.3)</div>
+        <div class="stat-value">&gamma;<sub>rel</sub> &isin; [1.118, 1.179]</div>
+        <div class="stat-note">Exponential Poisson AQUAL (&mu;(x) = 1 &minus; e<sup>&minus;x</sup>) spanning Solar total vs baryonic g<sub>ext</sub>.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Secondary Prediction H2 (EFE Quadrupole)</div>
+        <div class="stat-value">&Delta;<sub>&gamma;</sub> = &minus;0.024</div>
+        <div class="stat-note">Sky-projected anisotropy &gamma;<sub>&perp;</sub> &minus; &gamma;<sub>&parallel;</sub> in 10&ndash;30 kAU (frozen interval [&minus;0.035, &minus;0.015]).</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Strict Falsification Threshold</div>
+        <div class="stat-value">&gamma;<sub>rel</sub> &lt; 1.050</div>
+        <div class="stat-note">Measured DR4 ratio below 1.05 falsifies both v0 and v1.3 in favour of Newtonian General Relativity.</div>
+      </div>
+    </section>
+
+    <h2>1. Interactive 3D Nonlinear PDE Explorer (Frozen Pre-DR4 Outputs)</h2>
+    <p>
+      Inspect the exact numerical solutions archived in <code>data/pde_v0_efe_dwarfs_binaries_results.json</code> and <code>data/pde_v13_poisson_results.json</code> prior to Gaia DR4. Move the cursor (or touch) across projected separations <em>s</em> &isin; [1, 30] kAU to inspect the local internal-to-external acceleration ratio, Newton&ndash;Raphson convergence, and sky-projected External Field Effect (EFE) anisotropy.
+    </p>
+
+    <div class="explorer-panel">
+      <div class="controls-bar">
+        <div class="tab-group" role="tablist" aria-label="Plot Mode">
+          <button class="ctrl-btn active" data-mode="boost" type="button">A. Relative Boost &gamma;<sub>rel</sub>(s)</button>
+          <button class="ctrl-btn" data-mode="quadrupole" type="button">B. EFE Sky Quadrupole &Delta;<sub>&gamma;</sub>(s)</button>
+          <button class="ctrl-btn" data-mode="field" type="button">C. 3D Anisotropic Green's Function</button>
+        </div>
+        <div class="field-group" id="gext-controls">
+          <span style="font-size:0.82rem;color:var(--ink-muted);font-weight:600;">Milky Way Field:</span>
+          <button class="ctrl-btn active" data-gext="solar" type="button">Primary g<sub>ext</sub> = 1.9e-10 m/s&sup2;</button>
+          <button class="ctrl-btn" data-gext="baryonic" type="button">Baryonic g<sub>N,MW</sub> = 1.2e-10 m/s&sup2;</button>
+        </div>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="pdeCanvas" width="980" height="410" aria-label="Interactive numerical PDE predictions chart"></canvas>
+      </div>
+
+      <div class="slider-row" id="ubz-slider-row">
+        <label for="ubzSlider"><strong>Dimensionless External Field u<sub>b,z</sub>:</strong></label>
+        <input type="range" id="ubzSlider" min="0.5" max="5.0" step="0.1" value="3.16" style="width:220px;">
+        <span class="mono" id="ubzVal">u_b,z = 3.16 (Solar Neighbourhood)</span>
+      </div>
+
+      <div class="readout-box" id="readout">
+        <span>Hover or tap on the chart to inspect frozen solver nodes (M<sub>tot</sub> = 1.5 M<sub>&odot;</sub> cylindrical Finite-Volume mesh).</span>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h2 style="margin-top:0;">2. Governing Field Equations &amp; Tensions</h2>
+        <p>
+          Existing Gaia DR3 wide-binary analyses diverge sharply between Newtonian consistency (&gamma;<sub>rel</sub> = 1.000; Pittordis &amp; Sutherland 2023; Banik et al. 2024) and canonical MOND boosts (&gamma;<sub>rel</sub> &approx; 1.38&ndash;1.40; Chae 2023, 2024; Hernandez 2023). Both equations tested here occupy an intermediate boost window with <strong>zero free parameters fitted to stellar binaries</strong>:
+        </p>
+        <ul>
+          <li>
+            <strong>Model <code>v0</code> (Additive Cubic-Gradient Scalar):</strong>
+            <code>&minus;&nabla;&middot;(|&nabla;&Psi;|&nabla;&Psi; / a<sub>c</sub>) = 4&pi;G&rho;</code> with <code>g<sub>tot</sub> = g<sub>N</sub> + g<sub>&Psi;,self</sub></code> and <code>a<sub>c</sub> = 1.9 &times; 10<sup>&minus;11</sup> m s<sup>&minus;2</sup></code> fixed globally from 171 SPARC rotation curves.
+          </li>
+          <li>
+            <strong>Model <code>v1.3</code> (Exponential Poisson AQUAL):</strong>
+            <code>&minus;&nabla;&middot;[&mu;(|&nabla;&Phi;|/a<sub>0</sub>)&nabla;&Phi;] = 4&pi;G&rho;</code> using Milgrom's thermodynamic function <code>&mu;(x) = 1 &minus; e<sup>&minus;x</sup></code> at canonical <code>a<sub>0</sub> = 1.20 &times; 10<sup>&minus;10</sup> m s<sup>&minus;2</sup></code>.
+          </li>
+        </ul>
+        <div class="callout">
+          <strong>Documented Pre-DR4 Empirical Tensions:</strong> Rather than cherry-picking favourable galaxies, Table 3 of the Zenodo note explicitly logs that <code>v0</code> underpredicts velocity dispersions in undisturbed Milky Way dwarf spheroidals (Fornax &gamma;<sub>&sigma;</sub> = 0.735, Leo I &gamma;<sub>&sigma;</sub> = 0.707, Leo II &gamma;<sub>&sigma;</sub> = 0.609). Model <code>v1.3</code> resolves Fornax (&gamma;<sub>&sigma;</sub> = 1.028), Leo I (&gamma;<sub>&sigma;</sub> = 0.967), and H I gas-rich SPARC dwarfs (median bias &minus;0.0042 dex), at the cost of higher RMS scatter in massive high-surface-brightness spirals (0.1556 dex vs 0.1391 dex for RAR+EFE).
+        </div>
+      </div>
+
+      <div>
+        <h2 style="margin-top:0;">3. 61-Second Technical Briefing</h2>
+        <div class="video-box">
+          <div class="video-frame" id="videoContainer">
+            <div class="video-placeholder" id="loadVideoBtn" role="button" tabindex="0" aria-label="Load 61-second technical briefing video from YouTube">
+              <span class="video-play-btn">Load 61s HD Briefing (YouTube)</span>
+              <span style="font-size:0.83rem;color:#cbd5e1;max-width:340px;">
+                Zero third-party cookies loaded until clicked. Direct link: https://youtu.be/vFcqBSWtYYI
+              </span>
+            </div>
+          </div>
+          <p style="font-size:0.84rem;color:var(--ink-muted);margin:0.75rem 0 0;">
+            Overview of the cylindrical Finite-Volume mesh, external-field quadrupole geometry, and cryptographic blinding offset ahead of ESA Gaia DR4.
+            <a href="https://youtu.be/vFcqBSWtYYI" target="_blank" rel="noopener">Open directly on YouTube</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h2>4. Pre-Registered Statistical Decision Boundaries (Zero Post-Hoc Tuning)</h2>
+    <p>
+      During Gaia DR4 ingestion (strict primary cut: heliocentric distance <em>d</em> &lt; 200 pc, chance-alignment <em>R</em> &lt; 0.01, parallax SNR &gt; 10, RUWE &lt; 1.2 on both components, main-sequence filter), the measured ratio &gamma;<sub>rel</sub>(10&ndash;30 kAU) is masked by a cryptographically seeded random additive offset while unresolved hierarchical triple modelling (<em>f</em><sub>triple</sub> &isin; {0, 0.20, 0.35, 0.50} under thermal eccentricity <em>f</em>(<em>e</em>) = 2<em>e</em>) and hemisphere systematics splits are logged. Unblinding occurs once. Both Estimator A (matched Keplerian Monte Carlo) and Estimator B (forward triple population model) must agree within 1&sigma;.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Unblinded Gaia DR4 &gamma;<sub>rel</sub>(10&ndash;30 kAU)</th>
+          <th>Locked Statistical Interpretation</th>
+          <th>Consequence for Models <code>v0</code> &amp; <code>v1.3</code></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>&gamma;<sub>rel</sub> &lt; 1.05</code></td>
+          <td>Newtonian General Relativity favoured in the Solar neighbourhood</td>
+          <td>Both <code>v0</code> (1.166) and <code>v1.3</code> (1.118&ndash;1.179) wide-binary boosts are <strong>falsified</strong>.</td>
+        </tr>
+        <tr>
+          <td><code>1.05 &le; &gamma;<sub>rel</sub> &le; 1.25</code></td>
+          <td>Intermediate low-acceleration boost regime confirmed</td>
+          <td>Consistent with pre-registered 3D PDE window; secondary test checks negative quadrupole <code>&Delta;<sub>&gamma;</sub> &isin; [&minus;0.035, &minus;0.015]</code>.</td>
+        </tr>
+        <tr>
+          <td><code>1.25 &lt; &gamma;<sub>rel</sub> &le; 1.35</code></td>
+          <td>Inconclusive transition zone</td>
+          <td>Requires explicit joint triple-star radial-velocity follow-up; no confirmation claimed.</td>
+        </tr>
+        <tr>
+          <td><code>&gamma;<sub>rel</sub> &gt; 1.35</code></td>
+          <td>Canonical RAR / AQUAL MOND boost favoured</td>
+          <td>Intermediate <code>v0</code> and exponential <code>v1.3</code> functional forms underpredict the boost and are disfavoured.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>5. One-Command Reproducibility &amp; SHA-256 Verification</h2>
+    <p>
+      All solvers rely strictly on standard Python &ge; 3.10 scientific libraries (<code>numpy</code>, <code>scipy.sparse.linalg.spsolve</code> with analytical Jacobian and Armijo backtracking, <code>matplotlib</code>). Verify machine-precision Poisson benchmarks (ratio 1.000032, residual drop 11.7 orders), 400 &times; 800 nonlinear Gauss convergence (0.088% thin-shell drift), and weak-EFE Green's function accuracy (0.21% error against exact &pi; / 4u<sub>b,z</sub>):
+    </p>
+
+    <div class="code-header">
+      <span class="mono" style="font-size:0.82rem;color:var(--ink-muted);">Terminal (Linux / macOS / WSL)</span>
+      <button class="copy-btn" id="copyCmdBtn" type="button">Copy Commands</button>
+    </div>
+<pre id="reproCmd">git clone https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde.git && cd gaia-dr4-wide-binary-3d-pde
+python3 code/pde_solver_v0_isolated_validation.py && python3 code/pde_v0_efe_dwarfs_binaries.py && python3 code/pde_v13_poisson_aqual_solver.py
+shasum -a 256 -c SHA256SUMS.txt</pre>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Archived Artefact (Zenodo Record 24210580)</th>
+          <th>Frozen SHA-256 Checksum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>Martins_2026_Gaia_DR4_PreRegistration_Technical_Note.pdf</code></td>
+          <td><code>8d69413b92885dbf0027a5a934c33fb6c536da26a79b6043a32d403f95bb7458</code></td>
+        </tr>
+        <tr>
+          <td><code>code/pde_v0_efe_dwarfs_binaries.py</code></td>
+          <td><code>4887d1a4189b0d80bb6cd732d4f8ef02793c7af0c63ce13a01ecf4fd460b2401</code></td>
+        </tr>
+        <tr>
+          <td><code>code/pde_v13_poisson_aqual_solver.py</code></td>
+          <td><code>637434fa6acbb48b160a364726749b382162890ef9be180ec01582bcc2765cca</code></td>
+        </tr>
+        <tr>
+          <td><code>code/pde_solver_v0_isolated_validation.py</code></td>
+          <td><code>df10a77cb6b2b8e7d407e54fdf232fcca7a24a1ad7a9249180190f71ed419535</code></td>
+        </tr>
+        <tr>
+          <td><code>data/pde_v0_efe_dwarfs_binaries_results.json</code></td>
+          <td><code>7c9cda19a64f55ae9eb0a2bb6a085813e7dd3e650e8c2ee4924a24542d37c917</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>6. Multi-Model Epistemic Verification Architecture (Quorum)</h2>
+    <p>
+      Prior to CERN Zenodo archival, all finite-volume discretisations, boundary conditions, and galaxy rotation-curve pipelines were audited through <strong>Quorum</strong> (patent-pending Hybrid Sovereignty Protocol, <code>PCT/US26/11908</code>), an adversarial multi-LLM consensus and Cohen's &kappa; disagreement engine coupled to deterministic execution invariants. Across iterative verification passes, the deterministic-plus-adversarial audit caught and eliminated 20 silent numerical and astrostatistical defects (including unit-scaling mismatches across 175 SPARC galaxies and 3D Plummer normalisation boundary errors) that single-model code review failed to flag. Technical benchmarks of the verification engine are documented at <a href="https://jaquelinejaque.github.io/quorum-audit/" target="_blank" rel="noopener">jaquelinejaque.github.io/quorum-audit</a>.
+    </p>
+
+    <footer>
+      <div>
+        <strong>Jaqueline Martins</strong> &middot; Independent Computational Physics &amp; AI Verification Researcher &middot;
+        Sovereign Chain Limited (Registered in England and Wales, Company No. <code>16139802</code>, Luton, United Kingdom) &middot;
+        ORCID: <a href="https://orcid.org/0009-0009-7732-5915" target="_blank" rel="noopener">0009-0009-7732-5915</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde" target="_blank" rel="noopener">GitHub Repository</a>
+        <a href="https://doi.org/10.5281/zenodo.24210580" target="_blank" rel="noopener">CERN Zenodo (10.5281/zenodo.24210580)</a>
+        <a href="https://jaquelinejaque.github.io/quorum-audit/" target="_blank" rel="noopener">Quorum Verification Benchmarks</a>
+        <a href="https://github.com/sponsors/jaquelinejaque" target="_blank" rel="noopener">GitHub Sponsors (Open-Science Compute)</a>
+        <a href="https://donate.stripe.com/9B64gzeaI8Dr6By305dwc3G" target="_blank" rel="noopener">Direct UK Compute Patronage (Stripe UK)</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      // 1. Official ESA Cosmos Countdowns (25 Nov 2026 11:00 UTC & 02 Dec 2026 11:00 UTC)
+      const cutoverUTC = Date.parse("2026-11-25T11:00:00Z");
+      const dr4UTC = Date.parse("2026-12-02T11:00:00Z");
+
+      function formatDelta(targetMs, completedLabel) {
+        const diff = targetMs - Date.now();
+        if (diff <= 0) return completedLabel;
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        return d + "d " + String(h).padStart(2, "0") + "h " + String(m).padStart(2, "0") + "m " + String(s).padStart(2, "0") + "s";
+      }
+
+      function tickCountdowns() {
+        document.getElementById("timer-cutover").textContent = formatDelta(cutoverUTC, "Archive Cutover Active");
+        document.getElementById("timer-dr4").textContent = formatDelta(dr4UTC, "Gaia DR4 Catalogue Live");
+      }
+      tickCountdowns();
+      setInterval(tickCountdowns, 1000);
+
+      // 2. Privacy-preserving YouTube loader
+      const loadVideoBtn = document.getElementById("loadVideoBtn");
+      if (loadVideoBtn) {
+        loadVideoBtn.addEventListener("click", function () {
+          const container = document.getElementById("videoContainer");
+          container.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/vFcqBSWtYYI?autoplay=1&rel=0" title="Gaia DR4 3D PDE Pre-Registration Briefing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        });
+      }
+
+      // 3. Copy reproducibility commands
+      const copyBtn = document.getElementById("copyCmdBtn");
+      copyBtn.addEventListener("click", function () {
+        const text = document.getElementById("reproCmd").textContent;
+        navigator.clipboard.writeText(text).then(function () {
+          copyBtn.textContent = "Copied";
+          setTimeout(function () { copyBtn.textContent = "Copy Commands"; }, 1800);
+        });
+      });
+
+      // 4. Exact Frozen Solver Datasets (from archived Zenodo JSON outputs)
+      const DATA = {
+        solar: {
+          label: "Primary Solar Neighbourhood Field (g_ext = 1.9e-10 m/s^2, u_b,z = 3.162)",
+          v0_rel_bin: 1.1660,
+          v13_rel_bin: 1.1183,
+          quad_bin: -0.0237,
+          mond_ref: [
+            { s: 1.5, y: 1.000 }, { s: 3.5, y: 1.065 }, { s: 7.5, y: 1.245 },
+            { s: 15.0, y: 1.375 }, { s: 20.0, y: 1.390 }, { s: 25.0, y: 1.396 }
+          ],
+          v0: [
+            { s: 1.5, gRatio: 20.808, gammaSph: 1.06894, gammaRel: 1.0000, quad: 0.00190, iters: 28, drop: 15.98 },
+            { s: 3.5, gRatio: 3.822,  gammaSph: 1.15266, gammaRel: 1.0783, quad: 0.00324, iters: 28, drop: 14.81 },
+            { s: 7.5, gRatio: 0.832,  gammaSph: 1.22704, gammaRel: 1.1479, quad: 0.01494, iters: 18, drop: 14.02 },
+            { s: 15.0, gRatio: 0.208, gammaSph: 1.24465, gammaRel: 1.1644, quad: -0.01856, iters: 11, drop: 13.20 },
+            { s: 20.0, gRatio: 0.117, gammaSph: 1.24712, gammaRel: 1.1667, quad: -0.02592, iters: 10, drop: 13.06 },
+            { s: 25.0, gRatio: 0.075, gammaSph: 1.24813, gammaRel: 1.1676, quad: -0.02884, iters: 11, drop: 13.76 }
+          ],
+          v13: [
+            { s: 1.5, gammaRel: 1.0000 },
+            { s: 3.5, gammaRel: 1.0285 },
+            { s: 7.5, gammaRel: 1.0890 },
+            { s: 15.0, gammaRel: 1.1174 },
+            { s: 20.0, gammaRel: 1.1186 },
+            { s: 25.0, gammaRel: 1.1191 }
+          ]
+        },
+        baryonic: {
+          label: "Purely Baryonic Disc Sensitivity Bound (g_N,MW = 1.2e-10 m/s^2, u_b,z = 2.513)",
+          v0_rel_bin: 1.2226,
+          v13_rel_bin: 1.1794,
+          quad_bin: -0.0218,
+          mond_ref: [
+            { s: 1.5, y: 1.000 }, { s: 3.5, y: 1.080 }, { s: 7.5, y: 1.290 },
+            { s: 15.0, y: 1.465 }, { s: 20.0, y: 1.490 }, { s: 25.0, y: 1.500 }
+          ],
+          v0: [
+            { s: 1.5, gRatio: 32.946, gammaSph: 1.06922, gammaRel: 1.0000, quad: 0.00213, iters: 28, drop: 16.23 },
+            { s: 3.5, gRatio: 6.051,  gammaSph: 1.15648, gammaRel: 1.0816, quad: 0.00328, iters: 28, drop: 15.22 },
+            { s: 7.5, gRatio: 1.318,  gammaSph: 1.26967, gammaRel: 1.1875, quad: 0.01895, iters: 19, drop: 14.26 },
+            { s: 15.0, gRatio: 0.329, gammaSph: 1.30346, gammaRel: 1.2191, quad: -0.01105, iters: 14, drop: 13.99 },
+            { s: 20.0, gRatio: 0.185, gammaSph: 1.30865, gammaRel: 1.2239, quad: -0.02574, iters: 10, drop: 13.11 },
+            { s: 25.0, gRatio: 0.119, gammaSph: 1.31090, gammaRel: 1.2260, quad: -0.03247, iters: 10, drop: 13.09 }
+          ],
+          v13: [
+            { s: 1.5, gammaRel: 1.0000 },
+            { s: 3.5, gammaRel: 1.0410 },
+            { s: 7.5, gammaRel: 1.1290 },
+            { s: 15.0, gammaRel: 1.1774 },
+            { s: 20.0, gammaRel: 1.1801 },
+            { s: 25.0, gammaRel: 1.1814 }
+          ]
+        }
+      };
+
+      const canvas = document.getElementById("pdeCanvas");
+      const ctx = canvas.getContext("2d");
+      const readout = document.getElementById("readout");
+      const gextControls = document.getElementById("gext-controls");
+      const sliderRow = document.getElementById("ubz-slider-row");
+      const ubzSlider = document.getElementById("ubzSlider");
+      const ubzVal = document.getElementById("ubzVal");
+
+      let currentMode = "boost";
+      let currentGext = "solar";
+      let hoverIndex = 3; // default highlight at 15 kAU
+
+      function resizeCanvas() {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = Math.round(rect.width * dpr);
+        canvas.height = Math.round(rect.height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        render();
+      }
+
+      function renderBoostPlot(w, h) {
+        const pad = { l: 64, r: 28, t: 30, b: 46 };
+        const pw = w - pad.l - pad.r;
+        const ph = h - pad.t - pad.b;
+        const d = DATA[currentGext];
+
+        const xMin = 0, xMax = 28;
+        const yMin = 0.96, yMax = 1.54;
+        const xToPx = s => pad.l + ((s - xMin) / (xMax - xMin)) * pw;
+        const yToPx = y => pad.t + (1 - (y - yMin) / (yMax - yMin)) * ph;
+
+        // Decision bin shading (10-28 kAU)
+        ctx.fillStyle = "rgba(22, 58, 95, 0.055)";
+        ctx.fillRect(xToPx(10), pad.t, xToPx(28) - xToPx(10), ph);
+
+        // Pre-registered intermediate window [1.05, 1.25]
+        ctx.fillStyle = "rgba(15, 118, 110, 0.08)";
+        ctx.fillRect(pad.l, yToPx(1.25), pw, yToPx(1.05) - yToPx(1.25));
+
+        // Falsification zone (< 1.05)
+        ctx.fillStyle = "rgba(100, 116, 139, 0.07)";
+        ctx.fillRect(pad.l, yToPx(1.05), pw, yToPx(yMin) - yToPx(1.05));
+
+        // Gridlines
+        ctx.strokeStyle = "#e5e7eb";
+        ctx.lineWidth = 1;
+        [1.0, 1.05, 1.15, 1.25, 1.35, 1.45].forEach(yv => {
+          ctx.beginPath();
+          ctx.moveTo(pad.l, yToPx(yv));
+          ctx.lineTo(w - pad.r, yToPx(yv));
+          ctx.stroke();
+          ctx.fillStyle = "#4e5661";
+          ctx.font = "11px ui-monospace, monospace";
+          ctx.textAlign = "right";
+          ctx.fillText(yv.toFixed(2), pad.l - 8, yToPx(yv) + 4);
+        });
+
+        [0, 5, 10, 15, 20, 25].forEach(sv => {
+          ctx.beginPath();
+          ctx.moveTo(xToPx(sv), pad.t);
+          ctx.lineTo(xToPx(sv), h - pad.b);
+          ctx.stroke();
+          ctx.fillStyle = "#4e5661";
+          ctx.font = "11px ui-monospace, monospace";
+          ctx.textAlign = "center";
+          ctx.fillText(sv + " kAU", xToPx(sv), h - pad.b + 18);
+        });
+
+        // Newtonian GR baseline (1.000)
+        ctx.save();
+        ctx.strokeStyle = "#52525b";
+        ctx.setLineDash([5, 4]);
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.moveTo(pad.l, yToPx(1.0));
+        ctx.lineTo(w - pad.r, yToPx(1.0));
+        ctx.stroke();
+        ctx.restore();
+
+        // Canonical RAR MOND + EFE curve
+        ctx.save();
+        ctx.strokeStyle = "#9a3412";
+        ctx.setLineDash([6, 4]);
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        d.mond_ref.forEach((pt, idx) => {
+          if (idx === 0) ctx.moveTo(xToPx(pt.s), yToPx(pt.y));
+          else ctx.lineTo(xToPx(pt.s), yToPx(pt.y));
+        });
+        ctx.stroke();
+        ctx.restore();
+
+        // Model v1.3 curve
+        ctx.strokeStyle = "#0f766e";
+        ctx.lineWidth = 2.4;
+        ctx.beginPath();
+        d.v13.forEach((pt, idx) => {
+          if (idx === 0) ctx.moveTo(xToPx(pt.s), yToPx(pt.gammaRel));
+          else ctx.lineTo(xToPx(pt.s), yToPx(pt.gammaRel));
+        });
+        ctx.stroke();
+        d.v13.forEach(pt => {
+          ctx.fillStyle = "#0f766e";
+          ctx.beginPath();
+          ctx.arc(xToPx(pt.s), yToPx(pt.gammaRel), 3.8, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        // Model v0 curve
+        ctx.strokeStyle = "#163a5f";
+        ctx.lineWidth = 2.8;
+        ctx.beginPath();
+        d.v0.forEach((pt, idx) => {
+          if (idx === 0) ctx.moveTo(xToPx(pt.s), yToPx(pt.gammaRel));
+          else ctx.lineTo(xToPx(pt.s), yToPx(pt.gammaRel));
+        });
+        ctx.stroke();
+        d.v0.forEach((pt, idx) => {
+          ctx.fillStyle = idx === hoverIndex ? "#b91c1c" : "#163a5f";
+          ctx.beginPath();
+          ctx.arc(xToPx(pt.s), yToPx(pt.gammaRel), idx === hoverIndex ? 6 : 4.2, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        // Labels & Legend
+        ctx.fillStyle = "#16191d";
+        ctx.font = "600 12px -apple-system, sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillText(d.label, pad.l + 6, pad.t - 10);
+
+        ctx.font = "11px -apple-system, sans-serif";
+        ctx.fillStyle = "#9a3412";
+        ctx.fillText("Canonical RAR MOND + EFE", xToPx(15.2), yToPx(d.mond_ref[3].y) - 8);
+        ctx.fillStyle = "#163a5f";
+        ctx.fillText("3D PDE Model v0 (bin = " + d.v0_rel_bin.toFixed(3) + ")", xToPx(15.2), yToPx(d.v0[3].gammaRel) - 9);
+        ctx.fillStyle = "#0f766e";
+        ctx.fillText("3D AQUAL Model v1.3 (bin = " + d.v13_rel_bin.toFixed(3) + ")", xToPx(15.2), yToPx(d.v13[3].gammaRel) + 15);
+        ctx.fillStyle = "#52525b";
+        ctx.fillText("Newtonian GR (1.000) | Falsifies < 1.05", xToPx(10.4), yToPx(1.0) + 14);
+
+        const sel = d.v0[hoverIndex];
+        const sel13 = d.v13[hoverIndex];
+        readout.innerHTML =
+          "<span><strong>Node s = " + sel.s.toFixed(1) + " kAU</strong> (g<sub>N,int</sub>/g<sub>ext</sub> = " + sel.gRatio.toFixed(3) + ")</span>" +
+          "<span><strong>v0 &gamma;<sub>rel</sub>:</strong> " + sel.gammaRel.toFixed(4) + " | <strong>v1.3 &gamma;<sub>rel</sub>:</strong> " + sel13.gammaRel.toFixed(4) + "</span>" +
+          "<span><strong>Newton&ndash;Raphson:</strong> " + sel.iters + " iters (&Delta;res = &minus;" + sel.drop.toFixed(1) + " orders)</span>";
+      }
+
+      function renderQuadrupolePlot(w, h) {
+        const pad = { l: 68, r: 28, t: 30, b: 46 };
+        const pw = w - pad.l - pad.r;
+        const ph = h - pad.t - pad.b;
+        const d = DATA[currentGext];
+
+        const xMin = 0, xMax = 28;
+        const yMin = -0.042, yMax = 0.026;
+        const xToPx = s => pad.l + ((s - xMin) / (xMax - xMin)) * pw;
+        const yToPx = y => pad.t + (1 - (y - yMin) / (yMax - yMin)) * ph;
+
+        // Frozen H2 window [-0.035, -0.015] in 10-28 kAU
+        ctx.fillStyle = "rgba(22, 58, 95, 0.09)";
+        ctx.fillRect(xToPx(10), yToPx(-0.015), xToPx(28) - xToPx(10), yToPx(-0.035) - yToPx(-0.015));
+
+        ctx.strokeStyle = "#e5e7eb";
+        ctx.lineWidth = 1;
+        [-0.035, -0.025, -0.015, 0.0, 0.015].forEach(yv => {
+          ctx.beginPath();
+          ctx.moveTo(pad.l, yToPx(yv));
+          ctx.lineTo(w - pad.r, yToPx(yv));
+          ctx.stroke();
+          ctx.fillStyle = "#4e5661";
+          ctx.font = "11px ui-monospace, monospace";
+          ctx.textAlign = "right";
+          ctx.fillText((yv >= 0 ? "+" : "") + yv.toFixed(3), pad.l - 8, yToPx(yv) + 4);
+        });
+
+        [0, 5, 10, 15, 20, 25].forEach(sv => {
+          ctx.beginPath();
+          ctx.moveTo(xToPx(sv), pad.t);
+          ctx.lineTo(xToPx(sv), h - pad.b);
+          ctx.stroke();
+          ctx.fillStyle = "#4e5661";
+          ctx.font = "11px ui-monospace, monospace";
+          ctx.textAlign = "center";
+          ctx.fillText(sv + " kAU", xToPx(sv), h - pad.b + 18);
+        });
+
+        // Zero anisotropy line (Newtonian GR)
+        ctx.save();
+        ctx.strokeStyle = "#52525b";
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        ctx.moveTo(pad.l, yToPx(0));
+        ctx.lineTo(w - pad.r, yToPx(0));
+        ctx.stroke();
+        ctx.restore();
+
+        // v0 Sky-projected quadrupole curve
+        ctx.strokeStyle = "#163a5f";
+        ctx.lineWidth = 2.8;
+        ctx.beginPath();
+        d.v0.forEach((pt, idx) => {
+          if (idx === 0) ctx.moveTo(xToPx(pt.s), yToPx(pt.quad));
+          else ctx.lineTo(xToPx(pt.s), yToPx(pt.quad));
+        });
+        ctx.stroke();
+
+        d.v0.forEach((pt, idx) => {
+          ctx.fillStyle = idx === hoverIndex ? "#b91c1c" : "#163a5f";
+          ctx.beginPath();
+          ctx.arc(xToPx(pt.s), yToPx(pt.quad), idx === hoverIndex ? 6 : 4.5, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        ctx.fillStyle = "#16191d";
+        ctx.font = "600 12px -apple-system, sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillText("Sky-Projected Quadrupole Anisotropy Delta_gamma = gamma_perp - gamma_par (Monte Carlo Sky Projection)", pad.l + 6, pad.t - 10);
+
+        ctx.font = "11px -apple-system, sans-serif";
+        ctx.fillStyle = "#163a5f";
+        ctx.fillText("Pre-registered H2 window [-0.035, -0.015] | Mean 10-30 kAU = " + d.quad_bin.toFixed(3), xToPx(10.5), yToPx(-0.015) - 7);
+        ctx.fillStyle = "#52525b";
+        ctx.fillText("Isotropic Newtonian baseline (Delta_gamma = 0.000)", xToPx(12.5), yToPx(0) - 7);
+
+        const sel = d.v0[hoverIndex];
+        readout.innerHTML =
+          "<span><strong>Node s = " + sel.s.toFixed(1) + " kAU</strong></span>" +
+          "<span><strong>&Delta;<sub>&gamma;</sub> (&gamma;<sub>&perp;</sub> &minus; &gamma;<sub>&parallel;</sub>):</strong> " + (sel.quad >= 0 ? "+" : "") + sel.quad.toFixed(5) + "</span>" +
+          "<span><strong>Physical Regime:</strong> " + (sel.s >= 10 ? "EFE-dominated (&gamma;<sub>&parallel;</sub> &gt; &gamma;<sub>&perp;</sub>)" : "Quasi-isolated transition") + "</span>";
+      }
+
+      function renderGreensFunctionField(w, h) {
+        const ubz = parseFloat(ubzSlider.value);
+        const cx = w * 0.42;
+        const cy = h * 0.52;
+        const maxR = Math.min(w * 0.34, h * 0.41);
+
+        ctx.fillStyle = "#f8fafc";
+        ctx.fillRect(0, 0, w, h);
+
+        // Draw iso-potential contours of u^asymp(R, Z) = 1 / (u_b,z * r * sqrt(1 + sin^2(theta)))
+        // Notice: r * sqrt(1 + R^2/r^2) = sqrt(R^2 + Z^2 + R^2) = sqrt(2*R^2 + Z^2)!
+        // Exact contour of constant u^asymp is an ellipse elongated along Z (Galactic g_ext axis) by sqrt(2)!
+        const levels = [0.22, 0.34, 0.50, 0.72, 1.05, 1.55];
+        levels.forEach((lvl, i) => {
+          const scale = (maxR / (lvl * (0.55 + 0.18 * ubz)));
+          const semiZ = scale;
+          const semiR = scale / Math.SQRT2;
+          if (semiZ < maxR * 1.15 && semiZ > 8) {
+            ctx.beginPath();
+            ctx.ellipse(cx, cy, semiR, semiZ, 0, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(22, 58, 95, " + (0.04 + i * 0.025) + ")";
+            ctx.fill();
+            ctx.strokeStyle = "#163a5f";
+            ctx.lineWidth = 1.4;
+            ctx.stroke();
+          }
+        });
+
+        // Axes (R horizontal perpendicular to g_ext, Z vertical parallel to g_ext)
+        ctx.strokeStyle = "#64748b";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(cx - maxR * 1.1, cy);
+        ctx.lineTo(cx + maxR * 1.1, cy);
+        ctx.moveTo(cx, cy - maxR * 1.1);
+        ctx.lineTo(cx, cy + maxR * 1.1);
+        ctx.stroke();
+
+        // Central binary barycentre
+        ctx.fillStyle = "#b91c1c";
+        ctx.beginPath();
+        ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "#16191d";
+        ctx.font = "600 12px -apple-system, sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillText("Exact 3D Linearised EFE Green's Function Contours in Cylindrical (R, Z)", 20, 24);
+
+        const panelX = w * 0.67;
+        ctx.font = "12px ui-monospace, monospace";
+        ctx.fillStyle = "#163a5f";
+        ctx.fillText("u^asymp(r, theta) =", panelX, 85);
+        ctx.fillText("  kappa / [u_b,z * r * sqrt(1 + sin^2 theta)]", panelX, 105);
+        ctx.fillStyle = "#16191d";
+        ctx.fillText("Semi-axis ratio Z / R = sqrt(2) = 1.4142", panelX, 145);
+        ctx.fillText("Solid-angle boost = pi / (4 * u_b,z)", panelX, 170);
+        ctx.fillText("Exact value       = " + (Math.PI / (4 * ubz)).toFixed(5), panelX, 192);
+        ctx.fillStyle = "#0f766e";
+        ctx.fillText("400x800 FV solver match: 99.79% (0.21% err)", panelX, 224);
+        ctx.fillStyle = "#4e5661";
+        ctx.font = "11.5px -apple-system, sans-serif";
+        ctx.fillText("Vertical Z axis: parallel to Milky Way g_ext (theta = 0 deg)", panelX, 262);
+        ctx.fillText("Horizontal R axis: perpendicular to g_ext (theta = 90 deg)", panelX, 282);
+        ctx.fillText("Stronger inward boost along Z yields Delta_gamma < 0.", panelX, 302);
+
+        readout.innerHTML =
+          "<span><strong>Analytical Invariant:</strong> &int; u<sup>asymp</sup> d&Omega; / 4&pi; = &pi; / (4 u<sub>b,z</sub>) = " + (Math.PI / (4 * ubz)).toFixed(5) + "</span>" +
+          "<span><strong>Perp-to-Parallel Factor:</strong> 1 / &radic;2 = 0.7071 (3D PDE benchmark: 0.21% error, &Delta;res = &minus;10.2 orders)</span>";
+      }
+
+      function render() {
+        const rect = canvas.getBoundingClientRect();
+        ctx.clearRect(0, 0, rect.width, rect.height);
+        if (currentMode === "boost") renderBoostPlot(rect.width, rect.height);
+        else if (currentMode === "quadrupole") renderQuadrupolePlot(rect.width, rect.height);
+        else renderGreensFunctionField(rect.width, rect.height);
+      }
+
+      // Pointer hover interaction
+      function handlePointer(clientX) {
+        if (currentMode === "field") return;
+        const rect = canvas.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const padL = currentMode === "boost" ? 64 : 68;
+        const pw = rect.width - padL - 28;
+        const sEst = Math.max(0, Math.min(28, ((x - padL) / pw) * 28));
+        const nodes = DATA[currentGext].v0;
+        let best = 0;
+        let bestDist = Infinity;
+        nodes.forEach((n, idx) => {
+          const dist = Math.abs(n.s - sEst);
+          if (dist < bestDist) { bestDist = dist; best = idx; }
+        });
+        if (best !== hoverIndex) {
+          hoverIndex = best;
+          render();
+        }
+      }
+
+      canvas.addEventListener("mousemove", e => handlePointer(e.clientX));
+      canvas.addEventListener("touchmove", e => {
+        if (e.touches && e.touches[0]) handlePointer(e.touches[0].clientX);
+      }, { passive: true });
+
+      document.querySelectorAll("[data-mode]").forEach(btn => {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll("[data-mode]").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentMode = btn.getAttribute("data-mode");
+          gextControls.style.display = currentMode === "field" ? "none" : "flex";
+          sliderRow.classList.toggle("visible", currentMode === "field");
+          render();
+        });
+      });
+
+      document.querySelectorAll("[data-gext]").forEach(btn => {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll("[data-gext]").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentGext = btn.getAttribute("data-gext");
+          render();
+        });
+      });
+
+      ubzSlider.addEventListener("input", function () {
+        ubzVal.textContent = "u_b,z = " + parseFloat(ubzSlider.value).toFixed(2);
+        render();
+      });
+
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+    })();
+  </script>
+</body>
+</html>

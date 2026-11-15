@@ -1,3 +1,9 @@
+# .github/FUNDING.yml
+# Open-Science Compute & Archival Patronage — Gaia DR4 3D Nonlinear PDE Pre-Registration
+# Sovereign Chain Limited (Company No. 16139802, Luton, United Kingdom) · ORCID: 0009-0009-7732-5915
+
 github: [jaquelinejaque]
 ko_fi: jaquelinemartins
-custom: ["https://donate.stripe.com/9B64gzeaI8Dr6By305dwc3G", "https://doi.org/10.5281/zenodo.24210580"]
+custom:
+  - "https://donate.stripe.com/9B64gzeaI8Dr6By305dwc3G"
+  - "https://doi.org/10.5281/zenodo.24210580"

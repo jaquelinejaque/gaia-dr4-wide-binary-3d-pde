@@ -17,7 +17,8 @@
 
 [![Watch the 60-Second Narrated Scientific Briefing](figures/cover_gaia_dr4_3d_wide_binary.jpg)](https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde/releases/download/v1.0.0/APPROVED_GAIA_DR4_PITCH_60S_VEO3_2026.mp4)
 
-- **Watch / Download 60s Narrated Briefing (`MP4`, 1080p HD, Stereo Audio):** [APPROVED_GAIA_DR4_PITCH_60S_VEO3_2026.mp4](https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde/releases/download/v1.0.0/APPROVED_GAIA_DR4_PITCH_60S_VEO3_2026.mp4) ([Release `v1.0.0`](https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde/releases/tag/v1.0.0))
+- **Watch / Download 60s Narrated Briefing (`MP4`, 1080p HD, Stereo Audio):** [APPROVED_GAIA_DR4_PITCH_60S_VEO3_2026.mp4](https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde/releases/download/v1.0.0/APPROVED_GAIA_DR4_PITCH_60S_VEO3_2026.mp4) ([Release `v1.0.0`](https://github.com/jaquelinejaque/gaia-dr4-wide-binary-3d-pde/releases/tag/v1.0.0) · [YouTube Mirror](https://youtu.be/vFcqBSWtYYI))
+- **Interactive 3D PDE Browser Explorer (GitHub Pages):** [jaquelinejaque.github.io/gaia-dr4-wide-binary-3d-pde](https://jaquelinejaque.github.io/gaia-dr4-wide-binary-3d-pde/)
 - **Read Pre-Registered CERN Zenodo Technical Note (`PDF`):** [DOI: 10.5281/zenodo.24210580](https://doi.org/10.5281/zenodo.24210580)
 
 ---
@@ -63,12 +64,22 @@ shasum -a 256 -c SHA256SUMS.txt
 - **DOI:** [10.5281/zenodo.24210580](https://doi.org/10.5281/zenodo.24210580)
 - **ORCID:** [0009-0009-7732-5915](https://orcid.org/0009-0009-7732-5915)
 
-## Research Compute & Open-Science Patronage ($5,000 Compute & Open-Access Goal)
+---
 
-Independent open-science reproduction, cloud HPC Monte Carlo calibration, and 3D nonlinear PDE compute for *Gaia* DR4 wide-binary testing operate with zero university overhead and are supported via the following verified channels:
+## Epistemic Multi-Model Verification (`Quorum`)
 
-- **GitHub Sponsors (Official Monthly & One-Time Tiers — Zero Platform Fee):** [github.com/sponsors/jaquelinejaque](https://github.com/sponsors/jaquelinejaque)
-- **ResearchHub (Live Peer-Reviewed Grant Proposal):** [Proposal #33313 — Blind Observational Test of Pre-Registered 3D Nonlinear Scalar-Field Predictions](https://www.researchhub.com/proposal/33313/blind-observational-test-of-pre-registered-three-dimensional-nonlinear-scalar-field-predictions-v0-and-v1)
-- **Experiment.com Campaign:** [Testing Pre-Registered 3D Nonlinear Gravity Predictions with ESA Gaia DR4 Wide Binaries](https://experiment.com/projects/jhwuatafvbcdarkvnovl)
-- **Ko-fi Open-Science Page:** [ko-fi.com/jaquelinemartins](https://ko-fi.com/jaquelinemartins)
-- **Direct UK Research Patronage (Stripe UK — Apple Pay / Google Pay / GBP / USD / EUR):** [donate.stripe.com/9B64gzeaI8Dr6By305dwc3G](https://donate.stripe.com/9B64gzeaI8Dr6By305dwc3G)
+Prior to archival freezing at CERN Zenodo (`10.5281/zenodo.24210580`), all cylindrical Finite-Volume discretisations, boundary Green's function evaluations, and 175-galaxy SPARC rotation-curve scripts were audited using **Quorum** (`PCT/US26/11908`), an adversarial multi-LLM consensus and Cohen's kappa disagreement engine coupled to deterministic physical invariants. Across pre-freeze verification passes, this protocol identified and eliminated 20 silent numerical and astrostatistical defects (including unit-scaling discrepancies across SPARC rotation curves and 3D Plummer normalisation boundary offsets) missed by single-model code inspection. Architectural benchmarks are documented at [jaquelinejaque.github.io/quorum-audit](https://jaquelinejaque.github.io/quorum-audit/).
+
+---
+
+## Pre-DR4 Monte Carlo Compute & Open-Science Patronage
+
+This research programme is conducted independently from Luton, United Kingdom (`ORCID: 0009-0009-7732-5915`), outside university grant overhead. Ahead of the ESA *Gaia* Archive maintenance cutover (**25 November 2026, 12:00 CET**) and *Gaia* Data Release 4 catalogue opening (**2 December 2026, 12:00 CET**), external patronage directly underwrites dedicated multi-core/GPU cloud compute for large-scale Monte Carlo sky-projection and unresolved hierarchical triple forward modelling ($f_{\mathrm{triple}} \in \{0, 0.20, 0.35, 0.50\}$), continuous maintenance of the MIT-licensed sparse nonlinear elliptic PDE solvers, and open-access archival hosting — regardless of whether *Gaia* DR4 confirms an intermediate boost or falsifies both `v0` and `v1.3` in favour of Newtonian General Relativity ($\gamma_{\mathrm{rel}} < 1.05$).
+
+- **GitHub Sponsors (0% Platform Fee — Recurring or One-Time):** [github.com/sponsors/jaquelinejaque](https://github.com/sponsors/jaquelinejaque)
+- **Direct UK Compute & Corporate Patronage (Stripe UK — Automated Receipt, up to £10,000):** [donate.stripe.com/9B64gzeaI8Dr6By305dwc3G](https://donate.stripe.com/9B64gzeaI8Dr6By305dwc3G)
+- **Ko-fi Open-Science Micro-Support (GBP):** [ko-fi.com/jaquelinemartins](https://ko-fi.com/jaquelinemartins)
+- **ResearchHub Open Peer-Review Proposal:** [Proposal #33313](https://www.researchhub.com/proposal/33313/blind-observational-test-of-pre-registered-three-dimensional-nonlinear-scalar-field-predictions-v0-and-v1)
+- **Experiment.com Archival Page:** [Testing Pre-Registered 3D Nonlinear Gravity Predictions with ESA Gaia DR4 Wide Binaries](https://experiment.com/projects/jhwuatafvbcdarkvnovl)
+
+Individual backers (£25–£100) and institutional or quantitative compute patrons (£250–£2,500) supporting the pre-DR4 Monte Carlo compute run prior to 2 December 2026 receive formal acknowledgement in `ACKNOWLEDGMENTS.md` and in the post-unblinding CERN Zenodo archival report (`DOI series: 10.5281/zenodo.24210579`), unless anonymity is requested. Corporate patronage is administered via **Sovereign Chain Limited** (Registered in England and Wales, Company No. `16139802`, Luton, United Kingdom). All selection cuts and falsification thresholds remain strictly independent and cryptographically locked prior to data unblinding.

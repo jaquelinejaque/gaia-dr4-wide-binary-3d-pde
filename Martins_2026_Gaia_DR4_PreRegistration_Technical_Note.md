@@ -1,11 +1,16 @@
-# Nonlinear Field-Equation Predictions of an Additive Cubic-Gradient Scalar Model (v0) for Gaia DR4 Wide Binaries and Tests on Dwarf Galaxies
+# Pre-Registered Three-Dimensional Nonlinear AQUAL Predictions (`v1.3`) for Gaia DR4 Wide Binaries, Dwarf-Galaxy Tests, and Solar System Retirement of Unscreened Additive `v0`
 
-**Subtitle:** Pre-Registration Protocol, Three-Dimensional Nonlinear PDE Audit, and Structural Comparison with Exponential Poisson Interpolation (`v1.3`) Prior to Gaia Data Release 4  
-**Author:** Jaqueline Martins (Independent Researcher, United Kingdom)  
-**Document Status:** Frozen Pre-Registration & Reproducible Technical Note (Pre-Gaia DR4 Deposit Draft)  
-**Initial Protocol Lock:** 12 November 2026 · **Nonlinear 3D PDE Audit & Sign Amendment:** 14 November 2026  
+**Subtitle:** Pre-Registration Protocol (Version 1.1.0), Three-Dimensional Nonlinear PDE Audit, and Pre-DR4 Solar System Ephemeris Retirement of `v0` in Favour of Exponential Poisson Interpolation (`v1.3`)  
+**Author:** Jaqueline Martins (`ORCID: 0009-0009-7732-5915` · Independent Researcher, United Kingdom)  
+**Document Status:** Frozen Pre-Registration & Reproducible Technical Note (`v1.1.0` Pre-DR4 Amendment · `Concept DOI: 10.5281/zenodo.24210579`)  
+**Initial Protocol Lock:** 12 November 2026 · **3D PDE Deposit (`v1.0.0`):** 14 November 2026 (`10.5281/zenodo.24210580`) · **Pre-DR4 Ephemeris Audit & `v0` Retirement (`v1.1.0`):** 16 November 2026  
 **Target Observational Release:** ESA *Gaia* Data Release 4 (expected December 2026)  
 **Licence:** CC-BY-4.0 (Text & Figures) · MIT (Numerical Solver Code)
+
+> **Pre-DR4 Version 1.1.0 Erratum & Model Retirement Notice (16 November 2026 — Prior to *Gaia* DR4 Release):**  
+> Inner Solar System secular apsidal ephemeris and satellite laser-ranging checks conducted after `v1.0.0` decisively falsify the unscreened additive cubic-gradient formulation **`v0`** ($a_c = 1.9 \times 10^{-11}\text{ m s}^{-2}$), which predicts anomalous retrograde secular precessions of $-5{,}831.6''\text{ century}^{-1}$ in Mercury, $-72{,}303.1''\text{ century}^{-1}$ in Lunar Laser Ranging, and $-4{,}067.6''\text{ yr}^{-1}$ in LAGEOS-2 (`code/audit_v0_ephemeris_and_v13_q2.py`, Section 2.3). **`v0` is therefore formally retired ahead of *Gaia* DR4** (its `v1.0.0` derivations and tables are preserved below solely for archival traceability).  
+>  
+> The exponentially screened Poisson AQUAL formulation **`v1.3`** ($\mu(x) = 1 - e^{-x}$, Milgrom 1999; $a_0 = 1.20 \times 10^{-10}\text{ m s}^{-2}$), already archived and solved in `v1.0.0` (Table 2 Column 8, Table 3, Table 4, and Section 4.2), becomes the **sole surviving pre-registered hypothesis**. All frozen sample cuts, dual estimators, cryptographic blinding rules, and the primary decision window **$1.05 \le \gamma_{\mathrm{rel}}(10\text{--}30\text{ kAU}) \le 1.25$** (spanning the `v1.3` prediction **$\gamma_{\mathrm{rel}} = 1.118\text{--}1.179$** and sky-projected quadrupole **$\Delta_\gamma = -0.028$ to $-0.023 \in [-0.035, -0.015]$**) remain **100% unchanged**. Open non-wide-binary tensions of `v1.3` are explicitly recorded: (i) outer Solar System external-field phantom-halo quadrupole $|Q_2| = (2.28\text{--}2.76) \times 10^{-26}\text{ s}^{-2}$ at Saturn ($\sim 3.9\text{--}4.8\times$ above the $2\sigma$ *Cassini* bound of Hees et al. 2014), (ii) higher rotation-curve scatter across bright massive SPARC spirals ($0.1556\text{ dex}$ vs $0.1391\text{ dex}$ for `RAR + EFE`), and (iii) the standard baryon-only galaxy-cluster deficit.
 
 ---
 
@@ -81,6 +86,16 @@ which is $57.1\%$ larger than the naive one-dimensional scalar subtraction coeff
 
 - **Sign of the Quadrupole Anisotropy ($\gamma_\perp < \gamma_\parallel$):** Along the Galactic external field axis ($\theta = 0^\circ$, parallel to the Galactic Centre), $(1 + \sin^2 0^\circ)^{-1/2} = 1.000$, whereas perpendicular to the external field ($\theta = 90^\circ$), $(1 + \sin^2 90^\circ)^{-1/2} = 1/\sqrt{2} \approx 0.7071$. Consequently, in the EFE-dominated wide-binary regime ($s \in [10, 30]\text{ kAU}$), **binaries aligned with the Galactic Centre experience a stronger inward radial boost than perpendicular binaries**, forcing $\Delta_\gamma \equiv \gamma_\perp - \gamma_\parallel < 0$. An earlier pre-solver estimate ($+0.03$ to $+0.05$) arose from inspecting the stiffness factor $2\partial_Z^2$ without applying the $\delta(Z) = \delta(\tilde{Z})/\sqrt{2}$ coordinate Jacobian and is formally corrected herein prior to *Gaia* DR4.
 
+### 2.3 Pre-DR4 Solar System Ephemeris Retirement of `v0` and *Cassini* Quadrupole Tension of `v1.3` (`v1.1.0` Amendment)
+
+Around any bound body inside its MOND transition radius ($g_{N,\mathrm{int}}(r) \gg g_{\mathrm{ext}}$), the unscreened additive prescription `v0` produces a persistent inward $1/r$ radial perturbation $\delta g_r(r) = \sqrt{a_c G M}/r$ because it lacks a strong-field interpolating cutoff. While the instantaneous fractional force ratio $\delta g_r / g_N = \sqrt{a_c / g_N}$ appears small in high-acceleration orbits ($5.6 \times 10^{-5}$ at Mercury; $5.80 \times 10^{-6}$ at GPS semi-major axis $a = 26{,}560\text{ km}$, equivalent to $970.5\text{ m day}^{-1}$ of uncompensated along-track drift), a $1/r$ central force breaks Bertrand's theorem and drives a cumulative retrograde apsidal precession via Gauss's planetary perturbation equation (`code/audit_v0_ephemeris_and_v13_q2.py`):
+
+$$\Delta\varpi_{\mathrm{orbit}} = \frac{\sqrt{1 - e^2}}{n a e}\int_0^{2\pi} \frac{\sqrt{a_c G M}}{r(f)}\,\cos f\,\frac{dt}{df}\,df = -\frac{2\pi\sqrt{1 - e^2}}{1 + \sqrt{1 - e^2}}\sqrt{\frac{a_c a}{G M}}.$$
+
+Independent verification via Gauss quadrature and differential symplectic Velocity–Verlet orbital integration (validated first on Mercury's 1PN General Relativistic advance, reproducing $+42.98''\text{ century}^{-1}$) yields $-5{,}831.6''\text{ century}^{-1}$ ($-5{,}826.2''\text{ century}^{-1}$ Verlet) for Mercury versus the INPOP/DE ephemeris residual bound $|\Delta\dot{\varpi}| \lesssim 0.6''\text{ century}^{-1}$ (Fienga et al. 2011; Park et al. 2017; excluded by $\sim 9{,}700\times$), $-72{,}303.1''\text{ century}^{-1}$ for Lunar Laser Ranging ($> 10^5\times$ exclusion), and $-4{,}067.6''\text{ yr}^{-1}$ for LAGEOS-2 satellite laser ranging ($\sim 4 \times 10^5\times$ exclusion). Unscreened `v0` is therefore retired irrevocably prior to *Gaia* DR4.
+
+In contrast, `v1.3` ($\mu(x) = 1 - e^{-x}$, $a_0 = 1.20 \times 10^{-10}\text{ m s}^{-2}$) suppresses local spherical anomalies as $e^{-g_N/a_0}$ ($x_{\mathrm{Saturn}} \approx 5.38 \times 10^5 \implies e^{-x} = 0$ in IEEE-754 double precision), satisfying all inner-planet, lunar, and Earth-satellite laser-ranging constraints identically. However, non-linearity at the Solar MOND transition shell $r_M = \sqrt{G M_\odot / a_0} = 7{,}030\text{ AU}$ under the Milky Way external field induces a non-local harmonic quadrupole $\delta\Phi = -\frac{1}{2} Q_2 r^2 (\cos^2\theta - \frac{1}{3})$ inside the planetary zone (Milgrom 2010; Hees et al. 2014). Explicit 2D spherical integration of the `v1.3` QUMOND phantom density gives $|Q_2| = 2.28 \times 10^{-26}\text{ s}^{-2}$ at $e_N = 1.00$ ($2.76 \times 10^{-26}\text{ s}^{-2}$ at $e_N = 1.58$), exceeding the $2\sigma$ *Cassini* Saturn radio-tracking bound $|Q_2| \le 5.8 \times 10^{-27}\text{ s}^{-2}$ ($Q_2 = (3 \pm 3) \times 10^{-27}\text{ s}^{-2}$; Hees et al. 2014; Desmond, Hees & Famaey 2024) by a factor of $3.9\text{--}4.8\times$. Rather than tuning $\mu(x)$ *post hoc*, we hold `v1.3` strictly fixed ahead of *Gaia* DR4 with this *Cassini* quadrupole tension documented openly.
+
 ---
 
 ## 3. Numerical PDE Solver and Verification Suite
@@ -137,14 +152,14 @@ Nothing in the observational analysis pipeline may be tuned after *Gaia* DR4 ope
 2. **Dual Mandatory Estimators & Primary Eccentricity Prior:**
    - *Estimator A:* Internally calibrated normalised projected velocity profile pairing each $10\text{--}30\text{ kAU}$ binary with a $1\text{--}2\text{ kAU}$ control matched within $|\Delta \log_{10} M| < 0.10$ and $|\Delta \log_{10} d| < 0.12$, propagated with exact Keplerian mean-anomaly Monte Carlo sampling.
    - *Estimator B:* Forward orbital + unresolved-triple population modelling ($f_{\mathrm{triple}} \in \{0, 0.20, 0.35, 0.50\}$) under the **single frozen decision prior of thermal eccentricity $f(e) = 2e$** (uniform and super-thermal priors reported strictly as sensitivity tables, never used to claim confirmation). Disagreement $> 1\sigma$ between Estimators A and B, or between strict and relaxed samples, renders the test **inconclusive** rather than a win.
-3. **Exhaustive Decision Boundaries on $\gamma_{\mathrm{rel}} \equiv \gamma_a(10\text{--}30\text{ kAU})/\gamma_a(1\text{--}2\text{ kAU})$:**
-   - $\gamma_{\mathrm{rel}} < 1.05$: **Newtonian GR favoured; `v0` and `v1.3` wide-binary boost falsified.**
-   - $1.05 \le \gamma_{\mathrm{rel}} \le 1.25$: **Intermediate boost window consistent with `v0` ($1.166$) and `v1.3` ($1.118\text{--}1.179$).**
+3. **Exhaustive Decision Boundaries on $\gamma_{\mathrm{rel}} \equiv \gamma_a(10\text{--}30\text{ kAU})/\gamma_a(1\text{--}2\text{ kAU})$ (Unchanged from `v1.0.0`, Evaluated on Sole Surviving Model `v1.3`):**
+   - $\gamma_{\mathrm{rel}} < 1.05$: **Newtonian GR favoured; `v1.3` wide-binary boost falsified** *(unscreened `v0` already retired by Solar System ephemerides)*.
+   - $1.05 \le \gamma_{\mathrm{rel}} \le 1.25$: **Intermediate boost window consistent with surviving `v1.3` ($1.118\text{--}1.179$)** *(archival `v0` yielded $1.166$)*.
    - $1.25 < \gamma_{\mathrm{rel}} \le 1.35$: **Grey zone (inconclusive between intermediate models and canonical MOND).**
-   - $\gamma_{\mathrm{rel}} > 1.35$: **Canonical MOND + EFE ($\mu_{\mathrm{RAR}}$) favoured; `v0` ($a_c = 1.9\times 10^{-11}\text{ m s}^{-2}$) falsified.**
-4. **Corrected Quadrupole Falsification Rule (Primary $10\text{--}30\text{ kAU}$ Strict Bin):**
-   - Frozen `v0` prediction: $\Delta_\gamma \equiv \gamma_\perp - \gamma_\parallel \in [-0.035, -0.015]$ (central value $\mathbf{-0.024}$).
-   - If DR4 achieves statistical uncertainty $\sigma(\Delta_\gamma) \le 0.015$: measuring $\Delta_\gamma \ge +0.01$ falsifies the `v0` anisotropic operator; if $\sigma(\Delta_\gamma) > 0.03$, the quadrupole test is declared underpowered.
+   - $\gamma_{\mathrm{rel}} > 1.35$: **Canonical MOND + EFE ($\mu_{\mathrm{RAR}}$) favoured; `v1.3` ($1.118\text{--}1.179$) falsified.**
+4. **Corrected Quadrupole Falsification Rule (Primary $10\text{--}30\text{ kAU}$ Strict Bin — Unchanged Window):**
+   - Frozen prediction: $\Delta_\gamma \equiv \gamma_\perp - \gamma_\parallel \in [-0.035, -0.015]$ (surviving `v1.3` 3D PDE + Monte Carlo prediction: $\mathbf{-0.028}$ to $\mathbf{-0.023}$; archival `v0`: $-0.024$).
+   - If DR4 achieves statistical uncertainty $\sigma(\Delta_\gamma) \le 0.015$: measuring $\Delta_\gamma \ge +0.01$ falsifies the AQUAL EFE anisotropic operator; if $\sigma(\Delta_\gamma) > 0.03$, the quadrupole test is declared underpowered.
 5. **Cryptographic Blinding:** During the initial DR4 pipeline execution, $\gamma_{\mathrm{rel}}(10\text{--}30\text{ kAU})$ is masked by a random additive offset until all sample cuts, triple-fraction fits, and hemisphere diagnostics pass quality checks in writing. Unblinding occurs once; post-unblinding parameter changes are prohibited.
 
 ---
@@ -193,13 +208,13 @@ Table 4 demonstrates two points that must be stated side by side: (i) in H I gas
 
 To summarise the state of the programme ahead of *Gaia* DR4 without overstatement:
 
-1. **Unresolved Theoretical Unification:** `v0` ($a_c = 1.9 \times 10^{-11}\text{ m s}^{-2}$) and `v1.3` ($a_0 = 1.20 \times 10^{-10}\text{ m s}^{-2}$) are distinct non-relativistic field equations, not a single unified theory. Remarkably, exact 3D nonlinear PDE solutions place **both** formulations inside the same intermediate *Gaia* DR4 wide-binary acceleration window ($\gamma_{\mathrm{rel}} = 1.166$ for `v0`; $\gamma_{\mathrm{rel}} = 1.118\text{--}1.179$ for `v1.3`) with a negative sky-projected quadrupole ($\Delta_\gamma \approx -0.024$), cleanly separated from both Newtonian GR ($1.000$) and canonical RAR MOND ($\sim 1.40$). However, `v0` underpredicts isolated dwarf spheroidal dispersions by $20\%\text{--}35\%$, whereas `v1.3` resolves dwarf spheroidals at the expense of a sharper transition in massive spirals.
-2. **Code and Data Availability:** All solver scripts, SPARC audit pipelines, JSON outputs, and figure-generation routines accompanying this deposit are archived in the Zenodo repository structure (`code/`, `data/`, `figures/`) and locked by SHA-256 checksums (`SHA256SUMS.txt`) prior to *Gaia* Data Release 4:
+1. **Pre-DR4 Status of `v1.3` vs Retired `v0`:** Following the `v1.1.0` Solar System ephemeris audit (Section 2.3), unscreened `v0` ($a_c = 1.9 \times 10^{-11}\text{ m s}^{-2}$) is retired, leaving `v1.3` ($\mu(x) = 1 - e^{-x}$, $a_0 = 1.20 \times 10^{-10}\text{ m s}^{-2}$) as the sole surviving pre-registered wide-binary hypothesis ($\gamma_{\mathrm{rel}} = 1.118\text{--}1.179$, $\Delta_\gamma = -0.028$ to $-0.023$, tested against the unchanged $1.05\text{--}1.25$ decision window). While `v1.3` eliminates the $a_0/6.32$ scale discrepancy of `v0` and matches isolated Milky Way dwarf spheroidals (Fornax, Leo I), it exhibits documented tensions in the *Cassini* Saturn tidal quadrupole ($|Q_2| \approx 3.9\text{--}4.8\times$ the $2\sigma$ bound) and in bright massive SPARC spirals ($0.1556\text{ dex}$ RMS).
+2. **Code and Data Availability:** All solver scripts, SPARC audit pipelines, Solar System ephemeris audits, JSON outputs, and figure-generation routines accompanying this deposit are archived in the Zenodo repository structure (`code/`, `data/`, `figures/`) and locked by SHA-256 checksums (`SHA256SUMS.txt`) prior to *Gaia* Data Release 4:
 
-   - `code/pde_solver_v0_isolated_validation.py` — Newtonian machine check and $200\times 400 \to 400\times 800$ isolated Gauss convergence suite.
-   - `code/pde_v0_efe_dwarfs_binaries.py` — Sparse Newton–Raphson axisymmetric 3D PDE solver (`ub_z > 0`) for the 8 Milky Way dSphs, *Gaia* wide binaries ($1\text{--}30\text{ kAU}$), two-body check, and Monte Carlo sky-projected quadrupole.
    - `code/pde_v13_poisson_aqual_solver.py` — Sparse Newton–Raphson AQUAL PDE solver for `v1.3` ($\mu(x) = 1 - e^{-x}$).
    - `code/audit_v13_sparc_dwarfs_efe.py` — Controlled 175-galaxy SPARC rotation-curve and Chae et al. (2021) EFE audit.
+   - `code/audit_v0_ephemeris_and_v13_q2.py` — Pre-DR4 `v1.1.0` Solar System apsidal ephemeris & satellite laser-ranging falsification of `v0`, *Cassini* $Q_2$ integral for `v1.3`, and `v1.3` sky-projected wide-binary quadrupole.
+   - `code/pde_solver_v0_isolated_validation.py` & `code/pde_v0_efe_dwarfs_binaries.py` — Preserved `v1.0.0` archival validation and 3D PDE scripts.
 
 ---
 
@@ -213,7 +228,10 @@ To summarise the state of the programme ahead of *Gaia* DR4 without overstatemen
 - Chae, K.-H. & Milgrom, M., 2022, *ApJ*, 928, 24.
 - Chae, K.-H., 2023, *ApJ*, 952, 128.
 - Chae, K.-H., 2024, *ApJ*, 960, 114.
+- Desmond, H., Hees, A. & Famaey, B., 2024, *MNRAS*, 530, 1781.
 - El-Badry, K., Rix, H.-W. & Heintz, T. M., 2021, *MNRAS*, 506, 2269.
+- Fienga, A., Laskar, J., Kuchynka, P., Manche, H., Desvignes, G., Gastineau, M., Cognard, I. & Theureau, G., 2011, *Celest. Mech. Dyn. Astron.*, 111, 363.
+- Hees, A., Folkner, W. M., Jacobson, R. A. & Park, R. S., 2014, *Phys. Rev. D*, 89, 102002.
 - Hernandez, X., 2023, *MNRAS*, 525, 1401.
 - Lelli, F., McGaugh, S. S. & Schombert, J. M., 2016, *AJ*, 152, 157.
 - McConnachie, A. W., 2012, *AJ*, 144, 4.
@@ -223,6 +241,7 @@ To summarise the state of the programme ahead of *Gaia* DR4 without overstatemen
 - Milgrom, M., 1986, *ApJ*, 302, 617.
 - Milgrom, M., 1999, *Phys. Lett. A*, 253, 273.
 - Milgrom, M., 2010, *MNRAS*, 403, 886.
+- Park, R. S., Folkner, W. M., Konopliv, A. S., Williams, J. G., Smith, D. E. & Zuber, M. T., 2017, *AJ*, 153, 121.
 - Pittordis, C. & Sutherland, W., 2023, *Open J. Astrophys.*, 6, 4.
 - Walker, M. G., Mateo, M., Olszewski, E. W., Peñarrubia, J., Evans, N. W. & Gilmore, G., 2009, *ApJ*, 704, 1274.
 - Wolf, J., Martinez, G. D., Bullock, J. S., Kaplinghat, M., Geha, M., Muñoz, R. R., Simon, J. D. & Avedo, F. F., 2010, *MNRAS*, 406, 1220.

@@ -1,0 +1,108 @@
+{
+  "GR_Mercury_positive_control": {
+    "rad_per_orbit": 5.018810812718044e-07,
+    "arcsec_per_century": 42.982469723825766
+  },
+  "v0_ephemeris_falsification": {
+    "Mercury": {
+      "gauss_arcsec_per_century": -5831.577737436307,
+      "verlet_arcsec_per_century": -5826.232417286882,
+      "obs_bound_arcsec_per_century": 0.6,
+      "exclusion_factor": 9719.296229060512
+    },
+    "Moon_LLR": {
+      "gauss_arcsec_per_century": -72303.10043133389,
+      "gauss_arcsec_per_yr": -723.0310043133389
+    },
+    "LAGEOS2_SLR": {
+      "gauss_arcsec_per_yr": -4067.576802783983,
+      "obs_bound_arcsec_per_yr": 0.01,
+      "exclusion_factor": 406757.68027839833
+    },
+    "GPS_Block_III": {
+      "semi_major_axis_m": 26560000.0,
+      "delta_g_over_gN": 5.798770602707228e-06,
+      "along_track_drift_m_per_day": 970.4531691946809
+    }
+  },
+  "v13_local_screening_float64": {
+    "Saturn_gN_over_a0": 538178.0448075321,
+    "exp_minus_x_Saturn": 0.0
+  },
+  "v13_Saturn_QUMOND_quadrupole_Q2": {
+    "Solar_baryonic_gN_1p2e-10": {
+      "e_N": 1.0,
+      "r_M_AU": 7029.854694589191,
+      "Q2_s_minus_2": -2.277030647234114e-26,
+      "abs_Q2_over_Cassini_2sigma": 3.9259149090243346
+    },
+    "Solar_effective_eN_1p58": {
+      "e_N": 1.5833333333333333,
+      "r_M_AU": 7029.854694589191,
+      "Q2_s_minus_2": -2.7613625317044257e-26,
+      "abs_Q2_over_Cassini_2sigma": 4.76096988224901
+    }
+  },
+  "v13_wide_binary_quadrupole": {
+    "Solar_gtot_1p9e-10": {
+      "bins": {
+        "1.5": {
+          "gamma_sph": 1.0042667533076948,
+          "gamma_sky_par": 1.0020813501305654,
+          "gamma_sky_perp": 1.0064983434174781,
+          "Delta_gamma_perp_minus_par": 0.004416993286912696
+        },
+        "15.0": {
+          "gamma_sph": 1.122177100165729,
+          "gamma_sky_par": 1.123268085929215,
+          "gamma_sky_perp": 1.1191482918760927,
+          "Delta_gamma_perp_minus_par": -0.00411979405312235
+        },
+        "20.0": {
+          "gamma_sph": 1.1233130209366133,
+          "gamma_sky_par": 1.1382973715399696,
+          "gamma_sky_perp": 1.1060285880411382,
+          "Delta_gamma_perp_minus_par": -0.03226878349883133
+        },
+        "25.0": {
+          "gamma_sph": 1.1238839647048051,
+          "gamma_sky_par": 1.1462764229729558,
+          "gamma_sky_perp": 1.099191049394316,
+          "Delta_gamma_perp_minus_par": -0.047085373578639844
+        }
+      },
+      "gamma_rel_10_30_mean": 1.118352959081717,
+      "Delta_gamma_rel_10_30_mean": -0.027706433858554095
+    },
+    "Solar_gN_bar_1p2e-10": {
+      "bins": {
+        "1.5": {
+          "gamma_sph": 1.004263189427331,
+          "gamma_sky_par": 1.0017669886888592,
+          "gamma_sky_perp": 1.0068158333561414,
+          "Delta_gamma_perp_minus_par": 0.005048844667282282
+        },
+        "15.0": {
+          "gamma_sph": 1.1824305098593137,
+          "gamma_sky_par": 1.1772192923857037,
+          "gamma_sky_perp": 1.1854843426237411,
+          "Delta_gamma_perp_minus_par": 0.008265050238037475
+        },
+        "20.0": {
+          "gamma_sph": 1.1851723392835476,
+          "gamma_sky_par": 1.1982550226090458,
+          "gamma_sky_perp": 1.1692716222468669,
+          "Delta_gamma_perp_minus_par": -0.028983400362178946
+        },
+        "25.0": {
+          "gamma_sph": 1.1864609769332977,
+          "gamma_sky_par": 1.2098129362568606,
+          "gamma_sky_perp": 1.1601820790636248,
+          "Delta_gamma_perp_minus_par": -0.04963085719323579
+        }
+      },
+      "gamma_rel_10_30_mean": 1.17965883296085,
+      "Delta_gamma_rel_10_30_mean": -0.023350189491492774
+    }
+  }
+}
